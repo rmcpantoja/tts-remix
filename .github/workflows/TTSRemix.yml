@@ -14,7 +14,7 @@ jobs:
 
     steps:
       name: Source checkout
-        - uses: actions/checkout@v3
+        uses: actions/checkout@v3
         with:
           submodules: 'recursive'
 
