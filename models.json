@@ -1,0 +1,20 @@
+{
+    "ForwardTacotron+FastPitch using HiFi-GAN (mix)": {
+        "id": "forward",
+        "controls": {
+            "rate": true,
+            "pitch": true,
+            "energy": true
+        }
+    },
+    "piper vits": {
+        "id": "piper",
+        "controls": {
+            "sid": true,
+            "rate": true,
+            "pitch": false,
+            "scale1": true,
+            "scale2": true
+        }
+    }
+}

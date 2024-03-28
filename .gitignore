@@ -1,0 +1,7 @@
+# TTS checkpoints:
+*.pt
+*.pt.json
+# Python:
+__pycache__
+*.pyc
+*.pyd

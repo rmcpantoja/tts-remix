@@ -1,0 +1,5 @@
+wx
+playsound
+sounddevice
+soundfile
+numpy
