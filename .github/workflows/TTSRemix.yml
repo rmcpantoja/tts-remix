@@ -34,7 +34,7 @@ jobs:
           pip install -r requirements.txt
           cd ..
           cd piper/src/python
-          pip install -r requirements.txt
+          pip install --no-build-isolation -r requirements.txt
           cd piper_train/vits/monotonic_align
           mkdir monotonic_align
           cythonize -i core.pyx
@@ -44,7 +44,7 @@ jobs:
 
       - name: Compiling
         run: |
-          pip uninstall typing
+          pip uninstall -y typing
           pyinstaller tts_remix.py --windowed
           cp -R sounds dist/tts_remix/
       - uses: actions/upload-artifact@v3
