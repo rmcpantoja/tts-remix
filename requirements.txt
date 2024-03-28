@@ -1,4 +1,4 @@
-wx
+wxpython
 playsound
 sounddevice
 soundfile

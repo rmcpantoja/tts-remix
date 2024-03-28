@@ -21,7 +21,7 @@ jobs:
       - name: Configure Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.10
+          python-version: 3.10.14
           architecture: x64
 
       - name: Install all dependencies
@@ -33,13 +33,13 @@ jobs:
           cd ForwardTacotron
           pip install -r requirements.txt
           cd ..
-          cd piper
+          cd piper/src/python
           pip install -r requirements.txt
-          cd src/python/piper_train/vits/monotonic_align
+          cd piper_train/vits/monotonic_align
           mkdir monotonic_align
           cythonize -i core.pyx
           cp core*.pid monotonic_align/
-          cd ../../../..
+          cd ../../../../..
           cd ..
 
       - name: Compiling
