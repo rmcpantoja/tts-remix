@@ -44,6 +44,7 @@ jobs:
 
       - name: Compiling
         run: |
+          pip uninstall typing
           pyinstaller tts_remix.py --windowed
           cp -R sounds dist/tts_remix/
       - uses: actions/upload-artifact@v3
