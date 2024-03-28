@@ -1,6 +1,6 @@
 import sys
-sys.path.append('../ForwardTacotron')
-sys.path.append('../hifi-gan')
+sys.path.append('engines/ForwardTacotron')
+sys.path.append('engines/hifi-gan')
 import os
 from os.path import exists
 import torch

@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append('../piper/src/python')
+sys.path.append('engines/piper/src/python')
 import json
 import torch
 from phonemizer import phonemize

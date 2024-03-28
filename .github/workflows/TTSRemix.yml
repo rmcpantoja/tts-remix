@@ -1,0 +1,64 @@
+name: TTSRemix
+
+on:
+  push:
+    tags: ["*"]
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Source checkout
+        - uses: actions/checkout@v3
+          with:
+            submodules: 'recursive'
+
+      - name: Configure Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          architecture: x64
+
+      - name: Install all dependencies
+        run: |
+          pip install --upgrade pip wheel setuptools
+          pip install -r requirements.txt
+          pip install pyinstaller
+          cd engines
+          cd ForwardTacotron
+          pip install -r requirements.txt
+          cd ..
+          cd piper
+          pip install -r requirements.txt
+          cd src/python/piper_train/vits/monotonic_align
+          mkdir monotonic_align
+          cythonize -i core.pyx
+          cp core*.pid monotonic_align/
+          cd ../../../..
+          cd ..
+
+      - name: Compiling
+        run: |
+          pyinstaller tts_remix.py --windowed
+          cp -R sounds dist/tts_remix/
+      - uses: actions/upload-artifact@v3
+        with:
+          name: TTSRmix
+          path: dist/tts_remix
+          if-no-files-found: error
+      - name: zip packaging
+        run: |
+          cd dist/tts_remix
+          7z a ../../TTSRemix.zip .
+          cd ../../
+      - name: make_release
+        uses: softprops/action-gh-release@v1
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        with:
+          files: TTSRemix.zip
+          prerelease: ${{ contains(github.ref, '-') }}

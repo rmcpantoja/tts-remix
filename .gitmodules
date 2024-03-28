@@ -1,0 +1,9 @@
+[submodule "engines/ForwardTacotron"]
+	path = engines/ForwardTacotron
+	url = https://github.com/as-ideas/ForwardTacotron
+[submodule "engines/piper"]
+	path = engines/piper
+	url = https://github.com/rhasspy/piper
+[submodule "engines/hifi-gan"]
+	path = engines/hifi-gan
+	url = https://github.com/rmcpantoja/hifi-gan
