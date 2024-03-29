@@ -47,9 +47,10 @@ jobs:
           pip uninstall -y typing
           pyinstaller tts_remix.py --windowed
           cp -R sounds dist/tts_remix/
+          cp models.json dist/tts_remix/
       - uses: actions/upload-artifact@v3
         with:
-          name: TTSRmix
+          name: TTSRemix
           path: dist/tts_remix
           if-no-files-found: error
       - name: zip packaging

@@ -1,11 +1,15 @@
 import sys
-sys.path.append('engines/ForwardTacotron')
-sys.path.append('engines/hifi-gan')
 import os
 from os.path import exists
 import torch
 import json
 from typing import Tuple, Dict, Any, Union
+_DIR = os.path.abspath(os.path.dirname(__file__))
+_base_ROOT = os.path.abspath(os.path.join(_DIR, os.pardir, os.pardir))
+_TTS_MODULE_DIR = os.path.join(_base_ROOT, "engines", "ForwardTacotron")
+_vocoder_MODULE_DIR = os.path.join(_base_ROOT, "engines", "hifi-gan")
+sys.path.insert(0, _TTS_MODULE_DIR)
+sys.path.insert(0, _vocoder_MODULE_DIR)
 from utils.checkpoints import init_tts_model
 from utils.text.cleaners import Cleaner
 from utils.text.tokenizer import Tokenizer
@@ -15,6 +19,9 @@ from models.forward_tacotron import ForwardTacotron
 from meldataset import MAX_WAV_VALUE
 from hifimodels import Generator
 from env import AttrDict
+sys.path.remove(_TTS_MODULE_DIR)
+sys.path.remove(_vocoder_MODULE_DIR)
+del _DIR, _base_ROOT, _TTS_MODULE_DIR, _vocoder_MODULE_DIR
 import numpy as np
 
 class forward:
@@ -116,3 +123,7 @@ class forward:
 			normalize = (MAX_WAV_VALUE / np.max(np.abs(audio))) ** 0.9
 			audio = audio * normalize
 		return         audio.astype(np.int16), 22050
+
+#tts = forward("../../models/forward/auronplay_v1/auronplay_v1.pt")
+#audio, sr = tts.speak("¡Hola mundo!")
+#sd.play(audio, sr, blocking=True)

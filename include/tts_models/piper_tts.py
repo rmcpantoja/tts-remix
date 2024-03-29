@@ -1,12 +1,16 @@
 import os
 import sys
-sys.path.append('engines/piper/src/python')
+from .misc import audio_float_to_int16
+_DIR = os.path.abspath(os.path.dirname(__file__))
+_BASE_ROOT = os.path.abspath(os.path.join(_DIR, os.pardir, os.pardir))
+_TTS_MODULE_DIR = os.path.join(_BASE_ROOT, "engines", "piper", "src", "python")
+sys.path.insert(0, _TTS_MODULE_DIR)
 import json
 import torch
 from phonemizer import phonemize
 from phonemizer.backend import EspeakBackend
-from ..piper.utils import audio_float_to_int16
-import sounddevice as sd
+#sys.path.remove(_TTS_MODULE_DIR)
+#del _DIR, _BASE_ROOT, _TTS_MODULE_DIR
 
 class piper:
 	def __init__(self, model_path):
@@ -89,6 +93,6 @@ class piper:
 		return audio, self.config_dict["audio"]["sample_rate"]
 
 # Testing:
-#p = piper("../models/piper/es_ES-orioltonoalto-medium.pt")
+#p = piper("../../models/piper/es_ES-orioltonoalto-medium/es_ES-orioltonoalto-medium.pt")
 #audio, sr = p.speak("Soy Oriol gómez, el rey del bítstar.")
 #sd.play(audio, sr, blocking=True)
