@@ -1,5 +1,5 @@
 wxpython
-playsound
+git+https://github.com/t1nky/playsound
 sounddevice
 soundfile
 numpy
