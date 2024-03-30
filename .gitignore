@@ -1,3 +1,6 @@
+# PyInstaller:
+build/*
+dist/*
 # TTS checkpoints:
 *.pt
 *.pt.json

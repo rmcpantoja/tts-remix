@@ -45,8 +45,7 @@ jobs:
       - name: Compiling
         run: |
           pip uninstall -y typing
-          # Copy TTS models using --paths.
-          pyinstaller tts_remix.py --windowed --paths "engines"
+          pyinstaller tts_remix.spec
           cp -R sounds dist/tts_remix/
           cp models.json dist/tts_remix/
       - uses: actions/upload-artifact@v3
