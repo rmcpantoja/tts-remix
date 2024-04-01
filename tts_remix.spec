@@ -1,25 +1,23 @@
 # -*- mode: python ; coding: utf-8 -*-
+from PyInstaller.utils.hooks import collect_data_files
 
-
-block_cipher = None
+datas = []
+datas += collect_data_files('language_tags')
 
 
 a = Analysis(
     ['tts_remix.py'],
     pathex=['engines/ForwardTacotron', 'engines/hifi-gan', 'engines/piper/src/python/piper_train'],
     binaries=[],
-    datas=[],
+    datas=datas,
     hiddenimports=['language_tags'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],
-    win_no_prefer_redirects=False,
-    win_private_assemblies=False,
-    cipher=block_cipher,
     noarchive=False,
 )
-pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+pyz = PYZ(a.pure)
 
 exe = EXE(
     pyz,
@@ -41,7 +39,6 @@ exe = EXE(
 coll = COLLECT(
     exe,
     a.binaries,
-    a.zipfiles,
     a.datas,
     strip=False,
     upx=True,
