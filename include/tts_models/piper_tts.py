@@ -26,7 +26,10 @@ class piper:
 		self.load_tts_model(self.model_path)
 
 	def load_tts_model(self, checkpoint_path):
-		self.model = torch.load(checkpoint_path)
+		if not checkpoint_path.endswith("_jit.pt"):
+			self.model = torch.load(checkpoint_path)
+		else:
+			self.model = torch.jit.load(checkpoint_path)
 		self.model.eval()
 		self.config_path = checkpoint_path+".json"
 		if not os.path.exists(self.config_path):

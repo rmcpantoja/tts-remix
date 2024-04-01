@@ -8,9 +8,11 @@ def read_config():
 		settings = json.loads(base)
 	else:
 		# first time:
+		models_path = os.path.join(os.getcwd(), "models")
+		os.makedirs(models_path, exist_ok=True)
 		settings = {
 			"autoplay": True,
-			"models_path": os.path.join(os.getcwd(), "models"),
+			"models_path": models_path,
 			"extra_silence": True
 		}
 		write_config(settings)
