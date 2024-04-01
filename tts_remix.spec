@@ -3,7 +3,7 @@ from PyInstaller.utils.hooks import collect_data_files
 
 datas = []
 datas += collect_data_files('language_tags')
-datas += collect_data_files('typeguard')
+datas += collect_data_files('more-itertools')
 
 
 a = Analysis(
@@ -11,12 +11,11 @@ a = Analysis(
     pathex=['engines/ForwardTacotron', 'engines/hifi-gan', 'engines/piper/src/python/piper_train'],
     binaries=[],
     datas=datas,
-    hiddenimports=['language_tags', 'typeguard'],
+    hiddenimports=['language_tags', 'more-itertools'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],
-    module_collection_mode='pyz+py',
     noarchive=False,
 )
 pyz = PYZ(a.pure)
