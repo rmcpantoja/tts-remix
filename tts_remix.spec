@@ -1,17 +1,18 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_data_files
 
-datas = []
-datas += collect_data_files('language_tags')
-datas += collect_data_files('more-itertools')
-
+datas = [
+	collect_data_files('language_tags'),
+	collect_data_files('more-itertools'),
+	collect_data_files('typeguard')
+]
 
 a = Analysis(
     ['tts_remix.py'],
     pathex=['engines/ForwardTacotron', 'engines/hifi-gan', 'engines/piper/src/python/piper_train'],
     binaries=[],
     datas=datas,
-    hiddenimports=['language_tags', 'more-itertools'],
+    hiddenimports=['language_tags', 'more-itertools', 'typeguard'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
