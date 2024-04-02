@@ -1,11 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_data_files
 
-datas = [
-	collect_data_files('language_tags'),
-	collect_data_files('more-itertools'),
-	collect_data_files('typeguard')
-]
+datas = [collect_data_files('language_tags')]
+
 
 a = Analysis(
     ['tts_remix.py'],

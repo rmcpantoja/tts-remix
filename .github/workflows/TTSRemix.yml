@@ -45,6 +45,8 @@ jobs:
       - name: Compiling
         run: |
           pip uninstall -y typing
+          # Rolling back to inflect 6 because pyinstaller issues:
+          pip install inflect==6.2.0
           pyinstaller tts_remix.spec
           cp -R sounds dist/tts_remix/
           cp models.json dist/tts_remix/
