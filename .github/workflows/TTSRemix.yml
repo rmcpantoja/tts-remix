@@ -34,8 +34,7 @@ jobs:
           pip install -r requirements.txt
           cd ..
           cd piper/src/python
-          pip install cython pytorch-lightning==1.7.7
-          pip install -U librosa scipy
+          pip install --no-build-isolation -r requirements.txt
           cd piper_train/vits/monotonic_align
           mkdir monotonic_align
           cythonize -i core.pyx
