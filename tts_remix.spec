@@ -3,7 +3,7 @@ from PyInstaller.utils.hooks import collect_data_files
 
 datas = []
 datas += collect_data_files('language_tags')
-#datas += "engines/piper/src/python/piper_train"
+datas += ("engines/piper/src/python/piper_train", "piper_train")
 
 a = Analysis(
     ['tts_remix.py'],
