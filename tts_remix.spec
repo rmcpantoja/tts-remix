@@ -6,7 +6,7 @@ datas += collect_data_files('language_tags')
 
 a = Analysis(
     ['tts_remix.py'],
-    pathex=['engines/ForwardTacotron', 'engines/hifi-gan', 'engines/piper/src/python/piper_train'],
+    pathex=['engines/ForwardTacotron', 'engines/hifi-gan', 'engines/piper/src/python'],
     binaries=[],
     datas=datas,
     hiddenimports=['language_tags', 'scipy.special._cdflib'],
