@@ -50,6 +50,7 @@ jobs:
           pyinstaller tts_remix.spec
           cp -R sounds dist/tts_remix/
           cp models.json dist/tts_remix/
+          cp -R build/tts_remix/warn-tts_remix.txt dist/tts_remix/
       - uses: actions/upload-artifact@v3
         with:
           name: TTSRemix
