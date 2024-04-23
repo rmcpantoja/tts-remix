@@ -12,7 +12,7 @@ build_exe_options = dict(
 	)
 
 executables = [
-    Executable('tts_remix.py', base=base, targetName="app")
+    Executable('tts_remix.py', base=base)
 ]
 
 setup(name="TTSRemix",
