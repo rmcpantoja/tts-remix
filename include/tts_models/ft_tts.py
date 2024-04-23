@@ -39,6 +39,10 @@ class forward:
 		#self.denoiser = None
 		self.load_tts_model(self.model_path)
 		self.get_hifigan(os.path.dirname(self.model_path), os.path.basename(self.model_path))
+		if not checkpoint_path.endswith("_jit.pt"):
+			if self.config and self.h is not None:
+				if NOT self.config["dsp"]["sample_rate"] == self.h.sampling_rate:
+					raise Exception("The sample rate of the model is not the same than the vocoder.")
 
 	def load_tts_model(self, checkpoint_path: str) -> Tuple[Union[ForwardTacotron, FastPitch], Dict[str, Any]]:
 		if not checkpoint_path.endswith("_jit.pt"):

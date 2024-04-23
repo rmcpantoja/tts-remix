@@ -28,7 +28,7 @@ jobs:
         run: |
           pip install --upgrade pip wheel setuptools
           pip install -r requirements.txt
-          pip install pyinstaller
+          pip install cx_Freeze
           cd engines
           cd ForwardTacotron
           pip install -r requirements.txt
@@ -47,7 +47,7 @@ jobs:
           pip uninstall -y typing
           # Rolling back to inflect 6 because pyinstaller issues:
           pip install inflect==6.2.0
-          pyinstaller tts_remix.spec
+          python setup.py
           cp -R sounds dist/tts_remix/
           cp models.json dist/tts_remix/
           cp -R build/tts_remix/warn-tts_remix.txt dist/tts_remix/
